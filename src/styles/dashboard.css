@@ -1,0 +1,361 @@
+.dashboard-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dashboard-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.hero-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #18c078, #0c8f5a);
+  color: #06281b;
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+  flex-shrink: 0;
+  box-shadow: 0 12px 28px rgba(24, 192, 120, 0.32);
+  animation: floatY 6s ease-in-out infinite;
+}
+
+.dashboard-lower-row {
+  margin-top: 4px;
+}
+
+/* Stat cards */
+
+.stat-card {
+  position: relative;
+  overflow: hidden;
+  animation: fadeUp 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  transition: box-shadow 0.3s ease,
+    transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease;
+}
+
+.ant-col:nth-child(1) > .stat-card {
+  animation-delay: 0.04s;
+}
+
+.ant-col:nth-child(2) > .stat-card {
+  animation-delay: 0.1s;
+}
+
+.ant-col:nth-child(3) > .stat-card {
+  animation-delay: 0.16s;
+}
+
+.ant-col:nth-child(4) > .stat-card {
+  animation-delay: 0.22s;
+}
+
+.stat-card:hover {
+  box-shadow: var(--shadow-lift) !important;
+  transform: translateY(-4px) scale(1.01);
+  border-color: rgba(24, 192, 120, 0.4) !important;
+}
+
+.stat-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+.stat-card.employees-card::before {
+  background: linear-gradient(90deg, #4c7cf0, #2f5fd0);
+}
+
+.stat-card.present-card::before {
+  background: linear-gradient(90deg, #18c078, #0c8f5a);
+}
+
+.stat-card.absent-card::before {
+  background: linear-gradient(90deg, #f4716b, #e0453f);
+}
+
+.stat-card.performance-card::before {
+  background: linear-gradient(90deg, #f0d878, #dda237);
+}
+
+.stat-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  color: var(--primary);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.3s ease;
+}
+
+.stat-card:hover .stat-icon {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.stat-badge {
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+}
+
+.stat-card .ant-statistic-content {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.stat-footer {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  color: var(--text-3);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stat-footer .anticon {
+  color: var(--success);
+}
+
+/* Panels */
+
+.dashboard-panel .ant-card-body {
+  padding: 24px;
+}
+
+.panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.panel-heading h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.panel-heading p {
+  margin: 4px 0 0;
+  color: var(--text-3);
+  font-size: 12.5px;
+}
+
+.panel-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.3s ease;
+}
+
+.panel-heading:hover .panel-icon {
+  transform: scale(1.08);
+  box-shadow: 0 0 0 4px var(--primary-soft);
+}
+
+/* Attendance overview */
+
+.attendance-overview {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.attendance-progress {
+  flex-shrink: 0;
+}
+
+.attendance-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 160px;
+}
+
+.attendance-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  font-size: 13px;
+  transition: transform 0.22s ease, border-color 0.22s ease,
+    background-color 0.22s ease;
+}
+
+.attendance-item:hover {
+  transform: translateX(3px);
+  border-color: rgba(24, 192, 120, 0.35);
+}
+
+.attendance-item strong {
+  color: var(--text);
+  font-size: 15px;
+}
+
+.attendance-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend {
+  width: 10px;
+  height: 10px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.legend.present {
+  background: var(--success);
+}
+
+.legend.absent {
+  background: var(--danger);
+}
+
+.legend.total {
+  background: var(--primary);
+}
+
+/* Performance summary */
+
+.performance-score {
+  text-align: center;
+  padding: 8px 0;
+}
+
+.score-number {
+  font-size: 44px;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.score-number span {
+  font-size: 20px;
+  color: var(--text-3);
+  font-weight: 600;
+}
+
+.score-description {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--text-3);
+  font-size: 12px;
+}
+
+.score-description strong {
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .dashboard-hero {
+    gap: 12px;
+  }
+
+  .hero-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 13px;
+    font-size: 21px;
+  }
+
+  .dashboard-panel .ant-card-body {
+    padding: 16px;
+  }
+
+  .panel-heading {
+    flex-wrap: wrap;
+  }
+
+  .stat-card .ant-statistic-content {
+    font-size: 26px;
+  }
+
+  .attendance-overview {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .attendance-progress {
+    margin: 0 auto;
+  }
+
+  .score-number {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-icon {
+    display: none;
+  }
+
+  .stat-badge {
+    font-size: 10px;
+    padding: 3px 10px;
+  }
+}

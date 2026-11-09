@@ -1,0 +1,220 @@
+.sidebar-wrapper {
+  width: 248px;
+  min-width: 248px;
+  height: 100vh;
+  height: 100dvh;
+  background: linear-gradient(180deg, #141f1e 0%, #18302e 100%);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.2s ease;
+  position: sticky;
+  top: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  animation: fadeIn 0.4s ease both;
+}
+
+@keyframes brandGlow {
+  0%,
+  100% {
+    box-shadow: 0 8px 20px rgba(24, 192, 120, 0.35);
+  }
+  50% {
+    box-shadow: 0 10px 30px rgba(24, 192, 120, 0.55);
+  }
+}
+
+.sidebar-wrapper.sidebar-collapsed {
+  width: 80px;
+  min-width: 80px;
+}
+
+.sidebar-brand {
+  padding: 24px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.sidebar-collapsed .sidebar-brand {
+  padding: 24px 16px;
+  justify-content: center;
+  gap: 0;
+}
+
+.brand-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  background: linear-gradient(135deg, #18c078, #0c8f5a);
+  color: #06281b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(24, 192, 120, 0.35);
+  flex-shrink: 0;
+  animation: brandGlow 4s ease-in-out infinite;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.brand-icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.sidebar-brand:hover .brand-icon {
+  transform: rotate(-5deg) scale(1.06);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.brand-title {
+  color: #f1f2f3;
+  font-size: 16px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.brand-subtitle {
+  margin-top: 3px;
+  color: #8fb3a6;
+  font-size: 11.5px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.sidebar-section-title {
+  padding: 22px 22px 8px;
+  color: #6f8b83;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.sidebar-wrapper .ant-menu {
+  border-inline-end: 0 !important;
+  background: transparent !important;
+  padding: 4px 12px;
+}
+
+.sidebar-wrapper .ant-menu-item {
+  height: 46px;
+  line-height: 46px;
+  margin: 4px 0 !important;
+  border-radius: 12px !important;
+  color: #a3b8b1 !important;
+  font-size: 14px;
+  transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.sidebar-wrapper .ant-menu-item:hover {
+  color: #f1f2f3 !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  transform: translateX(3px);
+}
+
+.sidebar-wrapper .ant-menu-item-selected {
+  color: #06281b !important;
+  background: linear-gradient(135deg, #18c078, #12a86a, #1fd086) !important;
+  background-size: 200% 200% !important;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(24, 192, 120, 0.3);
+  animation: menuSheen 6s ease-in-out infinite;
+}
+
+.sidebar-wrapper .ant-menu-item-selected:hover {
+  transform: none;
+  color: #06281b !important;
+}
+
+.sidebar-wrapper .ant-menu-item-selected::after {
+  display: none;
+}
+
+.sidebar-wrapper .ant-menu-item .anticon {
+  font-size: 17px;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  padding: 14px 16px;
+}
+
+.sidebar-status {
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  backdrop-filter: blur(4px);
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 0 3px rgba(24, 192, 120, 0.25);
+  animation: statusPulse 2.4s ease-out infinite;
+}
+
+.sidebar-status strong,
+.sidebar-status small {
+  display: block;
+}
+
+.sidebar-status strong {
+  color: #e6ecf5;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sidebar-status small {
+  margin-top: 2px;
+  color: #8fa39c;
+  font-size: 10px;
+}
+
+.sidebar-version {
+  padding-top: 12px;
+  text-align: center;
+  color: #6f8b83;
+  font-size: 10.5px;
+}
+
+/* Mobile drawable nav reuses the same dark skin */
+
+.mobile-nav-drawer .ant-drawer-content {
+  background: #141f1e;
+}
+
+.mobile-nav-drawer .sidebar-wrapper {
+  width: 100%;
+  min-width: 100%;
+  height: 100%;
+  position: static;
+  border-right: none;
+}
+
+.mobile-nav-drawer .sidebar-wrapper.sidebar-collapsed {
+  width: 100%;
+  min-width: 100%;
+}
+
+.mobile-nav-drawer .sidebar-brand {
+  border-bottom-color: rgba(255, 255, 255, 0.07);
+}
+
+@media (max-width: 768px) {
+  .app-layout > .sidebar-wrapper {
+    display: none;
+  }
+}

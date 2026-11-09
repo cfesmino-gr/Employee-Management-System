@@ -1,0 +1,152 @@
+.login-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--bg);
+  background-image: linear-gradient(var(--pattern-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--pattern-line) 1px, transparent 1px),
+    repeating-conic-gradient(
+      from 0deg,
+      var(--pattern-fill) 0deg 90deg,
+      transparent 90deg 180deg
+    ),
+    var(--login-bg);
+  background-size: 28px 28px, 28px 28px, 56px 56px, cover;
+  background-position: center;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-page::before,
+.login-page::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  z-index: 0;
+}
+
+.login-page::before {
+  width: 420px;
+  height: 420px;
+  background: var(--login-glow-1);
+  top: -140px;
+  left: -120px;
+  animation: blobFloat 12s ease-in-out infinite alternate;
+}
+
+.login-page::after {
+  width: 380px;
+  height: 380px;
+  background: var(--login-glow-2);
+  bottom: -120px;
+  right: -100px;
+  animation: blobFloat 15s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes loginIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.login-card {
+  position: relative;
+  z-index: 1;
+  width: 400px;
+  max-width: 100%;
+  background: var(--surface) !important;
+  border: 1px solid var(--login-card-border) !important;
+  border-radius: 22px !important;
+  box-shadow: var(--login-card-shadow) !important;
+  overflow: hidden;
+  animation: loginIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.login-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #18c078, #0fa86b, #f0d878, #18c078);
+  background-size: 200% 100%;
+  animation: menuSheen 7s linear infinite;
+}
+
+.login-card .ant-card-body {
+  padding: 36px 32px;
+}
+
+.login-logo {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 18px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #18c078, #0c8f5a);
+  color: #06281b;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 12px 28px rgba(24, 192, 120, 0.38);
+  animation: floatY 5s ease-in-out infinite;
+}
+
+.login-logo svg {
+  width: 34px;
+  height: 34px;
+}
+
+.login-card h1,
+.login-card h2 {
+  margin: 0;
+  text-align: center;
+}
+
+.login-card h1 {
+  font-size: 25px;
+  color: var(--text);
+}
+
+.login-card h2 {
+  margin-top: 4px;
+  color: var(--primary);
+  font-size: 17px;
+}
+
+.login-description {
+  margin: 10px 0 28px;
+  text-align: center;
+  color: var(--text-3);
+  font-size: 14px;
+}
+
+.login-card .ant-form-item-label > label {
+  color: var(--text-2) !important;
+}
+
+.login-card .ant-btn-primary {
+  height: 44px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.login-footer {
+  margin-top: 22px;
+  text-align: center;
+  color: var(--text-3);
+  font-size: 11px;
+}
+
+@media (max-width: 480px) {
+  .login-card .ant-card-body {
+    padding: 28px 20px;
+  }
+}

@@ -1,0 +1,414 @@
+.splash-loader {
+  --splash-card-bg: rgba(255, 255, 255, 0.72);
+  --splash-card-border: rgba(255, 255, 255, 0.85);
+  --splash-card-shadow: 0 30px 80px rgba(15, 23, 42, 0.16);
+  --splash-orb-1: rgba(24, 192, 120, 0.34);
+  --splash-orb-2: rgba(37, 99, 235, 0.2);
+  --splash-orb-3: rgba(240, 216, 120, 0.26);
+  --splash-track: rgba(15, 23, 42, 0.08);
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  overflow: hidden;
+  background-color: var(--bg);
+  background-image: linear-gradient(var(--pattern-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--pattern-line) 1px, transparent 1px),
+    repeating-conic-gradient(
+      from 0deg,
+      var(--pattern-fill) 0deg 90deg,
+      transparent 90deg 180deg
+    ),
+    radial-gradient(
+      1100px 620px at 18% -12%,
+      rgba(24, 192, 120, 0.14),
+      transparent 62%
+    ),
+    radial-gradient(
+      900px 560px at 92% 108%,
+      rgba(37, 99, 235, 0.1),
+      transparent 60%
+    );
+  background-size: 28px 28px, 28px 28px, 56px 56px, auto, auto;
+  background-position: center;
+  animation: splashIn 0.45s ease both;
+}
+
+:root[data-theme="dark"] .splash-loader {
+  --splash-card-bg: rgba(49, 53, 57, 0.62);
+  --splash-card-border: rgba(255, 255, 255, 0.09);
+  --splash-card-shadow: 0 34px 90px rgba(0, 0, 0, 0.5);
+  --splash-orb-1: rgba(24, 192, 120, 0.32);
+  --splash-orb-2: rgba(24, 64, 130, 0.45);
+  --splash-orb-3: rgba(240, 216, 120, 0.16);
+  --splash-track: rgba(255, 255, 255, 0.09);
+}
+
+.splash-loader.is-exiting {
+  animation: splashOut 0.3s ease forwards;
+}
+
+.splash-orbs {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.splash-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  will-change: transform;
+}
+
+.splash-orb--one {
+  width: 460px;
+  height: 460px;
+  top: -160px;
+  left: -120px;
+  background: var(--splash-orb-1);
+  animation: splashDrift 14s ease-in-out infinite alternate;
+}
+
+.splash-orb--two {
+  width: 420px;
+  height: 420px;
+  bottom: -150px;
+  right: -110px;
+  background: var(--splash-orb-2);
+  animation: splashDrift 18s ease-in-out infinite alternate-reverse;
+}
+
+.splash-orb--three {
+  width: 300px;
+  height: 300px;
+  top: 55%;
+  left: 55%;
+  background: var(--splash-orb-3);
+  animation: splashDrift 22s ease-in-out infinite alternate;
+}
+
+.splash-card {
+  position: relative;
+  z-index: 1;
+  width: min(420px, 100%);
+  padding: 40px 36px 30px;
+  text-align: center;
+  border-radius: 28px;
+  background: var(--splash-card-bg);
+  border: 1px solid var(--splash-card-border);
+  box-shadow: var(--splash-card-shadow);
+  overflow: hidden;
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  backdrop-filter: blur(22px) saturate(140%);
+  animation: splashCardIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.splash-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.splash-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    120deg,
+    transparent 32%,
+    rgba(255, 255, 255, 0.32) 46%,
+    transparent 60%
+  );
+  background-size: 250% 100%;
+  pointer-events: none;
+  animation: splashShine 4.5s ease-in-out infinite;
+}
+
+:root[data-theme="dark"] .splash-card::after {
+  background: linear-gradient(
+    120deg,
+    transparent 32%,
+    rgba(255, 255, 255, 0.08) 46%,
+    transparent 60%
+  );
+  background-size: 250% 100%;
+}
+
+.splash-logo {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 22px;
+  display: grid;
+  place-items: center;
+}
+
+.splash-halo {
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--primary-soft), transparent 70%);
+  animation: splashPulse 2.4s ease-in-out infinite;
+}
+
+.splash-orbit {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(24, 192, 120, 0.35);
+  animation: splashSpin 9s linear infinite;
+  will-change: transform;
+}
+
+.splash-orbit--inner {
+  inset: 13px;
+  border-color: rgba(240, 216, 120, 0.4);
+  animation-duration: 6s;
+  animation-direction: reverse;
+}
+
+.splash-orbit .splash-dot {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 12px var(--primary);
+  transform: translateX(-50%);
+}
+
+.splash-orbit--inner .splash-dot {
+  width: 6px;
+  height: 6px;
+  top: -3px;
+  background: #f0d878;
+  box-shadow: 0 0 10px #f0d878;
+}
+
+.splash-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.splash-ring-track {
+  fill: none;
+  stroke: var(--splash-track);
+  stroke-width: 5;
+}
+
+.splash-ring-progress {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 5;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.15s linear;
+  filter: drop-shadow(0 0 6px var(--primary-soft));
+}
+
+.splash-mark-wrap {
+  position: relative;
+  z-index: 1;
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  border-radius: 22px;
+  color: #06281b;
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  box-shadow: 0 12px 28px rgba(24, 192, 120, 0.35);
+  animation: splashFloat 4s ease-in-out infinite;
+}
+
+.splash-mark {
+  width: 36px;
+  height: 36px;
+}
+
+.splash-title {
+  margin: 0;
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  animation: splashRise 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s both;
+}
+
+.splash-status {
+  margin: 8px 0 0;
+  min-height: 20px;
+  color: var(--text-2);
+  font-size: 13px;
+  animation: splashStatusFade 0.4s ease both;
+}
+
+.splash-track {
+  width: 100%;
+  height: 8px;
+  margin: 26px auto 14px;
+  border-radius: 999px;
+  background: var(--splash-track);
+  overflow: hidden;
+  animation: splashRise 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.25s both;
+}
+
+.splash-progress {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    var(--primary),
+    var(--primary-2),
+    #f0d878,
+    var(--primary)
+  );
+  background-size: 200% 100%;
+  box-shadow: 0 0 14px rgba(24, 192, 120, 0.45);
+  transition: width 0.15s linear;
+  animation: splashSheen 2s linear infinite;
+}
+
+.splash-percent {
+  display: inline-block;
+  color: var(--text-3);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  animation: splashRise 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.32s both;
+}
+
+@keyframes splashIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes splashOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes splashCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes splashFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes splashPulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes splashStatusFade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes splashSheen {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+@keyframes splashDrift {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(34px, 26px) scale(1.1);
+  }
+}
+
+@keyframes splashSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes splashShine {
+  0%,
+  35% {
+    background-position: 160% 50%;
+  }
+  75%,
+  100% {
+    background-position: -60% 50%;
+  }
+}
+
+@keyframes splashRise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .splash-card {
+    padding: 32px 22px 24px;
+    border-radius: 24px;
+  }
+
+  .splash-logo {
+    width: 104px;
+    height: 104px;
+  }
+
+  .splash-title {
+    font-size: 18px;
+  }
+}
